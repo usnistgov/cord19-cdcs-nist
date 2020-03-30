@@ -1,7 +1,6 @@
-# cord19-cdcs-nist
 
-Curated Archive for COVID-19 Research Challenge Dataset
-=======================================================
+Curated Archive for COVID-19 Research Challenge Dataset (cord19-cdcs-nist)
+==========================================================================
 
 This GitHub repository contains a downloadable snapshot of National Institute of Standards and Technology's COVID-19 Data Repository (https://covid19-data.nist.gov) we curated from the COVID-19 Open Research Dataset (CORD-19) provided by the Allen Institute for AI (https://allenai.org) at https://pages.semanticscholar.org/coronavirus-research.
 

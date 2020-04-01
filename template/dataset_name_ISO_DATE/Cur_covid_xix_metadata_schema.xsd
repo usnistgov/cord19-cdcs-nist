@@ -1,0 +1,39 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+<xsd:element name="root" type="CovidXixLinkedDataSet"/>
+
+<xsd:complexType name="CovidXixLinkedDataSet">
+	<xsd:sequence>
+		<xsd:element name="title" type="xsd:string"/>
+		<xsd:element name="pid" type="xsd:string"/>		
+		<xsd:element name="doi" type="xsd:string"/>
+		<xsd:element name="doi_url" type="xsd:string"/>
+		<xsd:element name="journal" type="xsd:string"/>
+		<xsd:element name="abstract" type="xsd:string"/>
+		<xsd:element name="authors" type="xsd:string"/>
+		<xsd:element name="sha" type="xsd:string"/>
+		<xsd:element name="license" type="xsd:string"/>
+		<xsd:element name="license_url" type="xsd:string"/>
+		<xsd:element name="publish_time" type="xsd:string"/>
+		<xsd:element name="source_x" type="xsd:string"/>
+		<xsd:element name="source_x_url" type="xsd:string"/>
+		<xsd:element name="pubmed_id" type="xsd:string"/>
+		<xsd:element name="pubmed_id_url" type="xsd:string"/>
+		<xsd:element name="pmcid" type="xsd:string"/>
+		<xsd:element name="pmcid_url" type="xsd:string"/>
+		<xsd:element name="microsoft_academic_paper_id" type="xsd:string"/>
+		<xsd:element name="microsoft_academic_paper_id_url" type="xsd:string"/>
+		<xsd:element name="who_no_covidence" type="xsd:string"/>
+		<xsd:element name="who_no_covidence_url" type="xsd:string"/>
+		<xsd:element name="has_full_text" type="xsd:string"/>
+		<xsd:element name="full_text_file" type="xsd:string"/>
+		<xsd:element name="content_json" type="xsd:string"/>
+		<xsd:element name="content_json_extracted_text" type="xsd:string"/>
+		<xsd:element name="content_json_extracted_text_keywords" type="xsd:string"/>
+		<xsd:element name="unicode_content_json" type="xsd:string"/>
+		<xsd:element name="unicode_content_json_extracted_text" type="xsd:string"/>
+		<xsd:element name="unicode_content_json_extracted_text_keywords" type="xsd:string"/>	
+	</xsd:sequence>
+</xsd:complexType>
+
+</xsd:schema>

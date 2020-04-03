@@ -11,9 +11,8 @@ include = [
 python = "^3.7"
 
 [tool.poetry.dev-dependencies]
-#dask = {extras = ["complete"]}
-cv-py = { path = "../../cv-py"}
 taskipy = "^1.2.1"
+cv-py = {git = "https://github.com/usnistgov/cv-py.git"}
 
 [tool.taskipy.tasks]
 data-tf = "python build_scripts/data_tf.py"

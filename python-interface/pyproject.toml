@@ -4,7 +4,7 @@ version = "0.1.1"
 description = "Curated Archive for Covid-19 Research Challenge Dataset"
 authors = ["Thurston Sexton <thurston.sexton@nist.gov>"]
 include = [
-    "cord19_cdcs/cord19_cdcs.parquet/**"
+    "cord19_cdcs/cord19_cdcs.parquet/**/*"
 ]
 
 [tool.poetry.dependencies]

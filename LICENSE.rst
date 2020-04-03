@@ -25,3 +25,6 @@ The use of any products described in this toolkit does not imply
 recommendation or endorsement by the National Institute of Standards and
 Technology, nor does it imply that products are necessarily the best
 available for the purpose.
+
+.. _National Institute of Standards and Technology: http://www.nist.gov/
+.. _title 15 United States Code Section 105: http://uscode.house.gov/uscode-cgi/fastweb.exe?getdoc+uscview+t17t20+9+0++

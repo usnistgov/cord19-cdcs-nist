@@ -9,7 +9,7 @@ The COVID-19 Data Repository provides searchable CORD-19 data and metadata, incl
 ## Downloading the Data
 The purpose of this repository is to provide a platform-neutral means for bulk downloads of curated COVID-19 data. These downloadable archives are versioned using GitHub Releases, based on the Data Repository's schema and time-stamped archival dates, making programmatic access to the latest data (or, consistent dependency management for reproducibility) much easier for users. 
 
-To download, head over to the [releases page](https://github.com/usnistgov/cord19-cdcs-nist/releases) and select a desired release and zip-archived format, or simply download the latest [JSON](https://github.com/usnistgov/cord19-cdcs-nist/releases/latest/download/JSON.zip), [XML](https://github.com/usnistgov/cord19-cdcs-nist/releases/latest/download/XML.zip), or [CSV](https://github.com/usnistgov/cord19-cdcs-nist/releases/latest/download/CSV.zip) versions at those links directly.  
+To download, head over to the [releases page](https://github.com/usnistgov/cord19-cdcs-nist/releases) and select a desired release and zip-archived format, or simply download the latest [JSON](https://github.com/usnistgov/cord19-cdcs-nist/releases/download/v0.1.1/JSON.zip), [XML](https://github.com/usnistgov/cord19-cdcs-nist/releases/download/v0.1.1/XML.zip), or [CSV](https://github.com/usnistgov/cord19-cdcs-nist/releases/download/v0.1.1/CSV.zip) versions at those links directly.  
 
 
 ## Data Packages

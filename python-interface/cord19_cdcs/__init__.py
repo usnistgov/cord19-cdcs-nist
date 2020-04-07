@@ -1,1 +1,1 @@
-#TODO allow module self-loading
+# TODO allow module self-loading

@@ -32,7 +32,7 @@ pipeline {
                         unzip -q -o JSON.zip -d ./data
 
                         # Move zip to dist folder
-                        cp *.zip -t ../../dist/
+                        cp *.zip -t ../dist/
                     """
                 }
             }

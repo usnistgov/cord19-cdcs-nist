@@ -3,6 +3,7 @@ pipeline {
         string(name: 'node_label', defaultValue: "master")
         string(name: 'data_url', defaultValue: "https://my-covid-data.org/dataset.tar.gz")
         string(name: 'access_token', defaultValue: "my_access_token")
+        string(name: 'repository', defaultValue: "username/repository")
         string(name: 'tag', defaultValue: "release_tag")
         string(name: 'name', defaultValue: "release_name")
     }
@@ -65,24 +66,23 @@ pipeline {
             steps {
                 dir ('dist') {
                     sh """
-                        github_repo=pdessauw/cord19-cdcs-nist
-                        release_url=https://api.github.com/repos/${github_repo}/releases
-                        assets_url=https://uploads.github.com/repos/${github_repo}/releases
+                        release_url=https://api.github.com/repos/${params.repository}/releases
+                        assets_url=https://uploads.github.com/repos/${params.repository}/releases
 
                         # Create the Github release
-                        release=$(curl -XPOST -H "Authorization:token ${token}" \
-                            --data "{\"tag_name\": \"${tag}\",
+                        release=$(curl -XPOST -H "Authorization:token ${params.access_token}" \
+                            --data "{\"tag_name\": \"${params.tag}\",
                                 \"target_commitish\": \"master\",
-                                \"name\": \"${name}\",
+                                \"name\": \"${params.name}\",
                                 \"draft\": false, \"prerelease\": true}" ${release_url})
 
-                        release_id=$(echo "$release" | sed -n -e 's/"id":\ \([0-9]\+\),/\1/p' | \
+                        release_id=$(echo "${release}" | sed -n -e 's/"id":\ \([0-9]\+\),/\1/p' | \
                                       head -n 1 | sed 's/[[:blank:]]//g')
 
                         # Upload asset for the release
                         for filename in $(ls)
                         do
-                            curl -XPOST -H "Authorization:token ${token}" \
+                            curl -XPOST -H "Authorization:token ${params.access_token}" \
                                 -H "Content-Type:application/octet-stream" \
                                 --data-binary @${filename} \
                                 ${assets_url}/${release_id}/assets?name=${filename}

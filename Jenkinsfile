@@ -16,7 +16,6 @@ pipeline {
                         # Download archive and untar
                         wget --no-check-certificate -q \
                             ${params.data_url} -O data.tar.gz
-                        tar -xvzf ./data.tar.gz --strip-components=1
                     """
                 }
             }

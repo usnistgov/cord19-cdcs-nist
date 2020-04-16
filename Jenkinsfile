@@ -12,6 +12,10 @@ pipeline {
     stages {
         stage('Download') {
             steps {
+                git branch: 'dev-automation',
+                    credentialsId: 'jenkins-ssh-git',
+                    url: 'git@github.com:pdessauw/cord19-cdcs-nist.git'
+
                 dir ('build') {
                     sh """
                         # Create necessary directories
@@ -65,29 +69,40 @@ pipeline {
         stage('Release') {
             steps {
                 dir ('dist') {
-                    sh """
-                        release_url=https://api.github.com/repos/${params.repository}/releases
-                        assets_url=https://uploads.github.com/repos/${params.repository}/releases
+                    script {
+                        def release_url = "https://api.github.com/repos/${params.repository}/releases"
+                        def assets_url = "https://uploads.github.com/repos/${params.repository}/releases"
 
-                        # Create the Github release
-                        release=$(curl -XPOST -H "Authorization:token ${params.access_token}" \
-                            --data "{\"tag_name\": \"${params.tag}\",
-                                \"target_commitish\": \"master\",
-                                \"name\": \"${params.name}\",
-                                \"draft\": false, \"prerelease\": true}" ${release_url})
-
-                        release_id=$(echo "${release}" | sed -n -e 's/"id":\ \([0-9]\+\),/\1/p' | \
-                                      head -n 1 | sed 's/[[:blank:]]//g')
-
-                        # Upload asset for the release
-                        for filename in $(ls)
-                        do
+                        def release = sh(script: """
+                            # Create the Github release
                             curl -XPOST -H "Authorization:token ${params.access_token}" \
-                                -H "Content-Type:application/octet-stream" \
-                                --data-binary @${filename} \
-                                ${assets_url}/${release_id}/assets?name=${filename}
-                        done
-                    """
+                                --data '{
+                                    "tag_name": "${params.tag}",
+                                    "target_commitish": "master",
+                                    "name": "${params.name}",
+                                    "draft": false, "prerelease": true
+                                }' $release_url
+                        """, returnStdout: true)
+
+                        def release_id = sh(script: """
+                            echo "$release" | grep "id: " | head -n1 | \
+                                cut -d':' -f2 | sed -r "s;[^0-9];;g"
+                        """, returnStdout: true).trim()
+
+                        def files = sh(
+                            script: 'ls', returnStdout: true
+                        ).split()
+
+                        for (int i = 0; i < files.size(); i++) {
+                            def filename = files[i]
+                            sh """
+                                curl -XPOST -H "Authorization:token ${params.access_token}" \
+                                    -H "Content-Type:application/octet-stream" \
+                                    --data-binary @$filename \
+                                    $assets_url/$release_id/assets?name=$filename
+                            """
+                        }
+                    }
                 }
             }
         }

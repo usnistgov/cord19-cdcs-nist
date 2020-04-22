@@ -48,7 +48,7 @@ pipeline {
             steps {
                 dir ('python-interface') {
                     sh """
-                        python3 -m pip install poetry
+                        python3 -m pip install -r ../requirements.txt
                         python3 -m poetry install
                     """
                 }

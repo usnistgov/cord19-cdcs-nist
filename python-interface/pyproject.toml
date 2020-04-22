@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "cord19-cdcs"
-version = "0.1.1"
+version = "0.0.0"  # Managed by poetry-dynamic-versioning
 description = "Curated Archive for Covid-19 Research Challenge Dataset"
 authors = ["Thurston Sexton <thurston.sexton@nist.gov>"]
 include = [
@@ -14,6 +14,9 @@ python = "^3.6.8"
 taskipy = "^1.2.1"
 cv-py = {git = "https://github.com/usnistgov/cv-py.git"}
 black = "^19.10b0"
+
+[tool.poetry-dynamic-versioning]
+enable = true
 
 [tool.taskipy.tasks]
 data-tf = "python build_scripts/data_tf.py"

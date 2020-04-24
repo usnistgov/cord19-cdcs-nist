@@ -38,7 +38,7 @@ def get_bag(build_dir: Path, base_dtype: str = "json") -> db.Bag:
     )
 
 
-def bag_to_df(bag: db.Bag, index_key: str = "pid") -> dd.DataFrame:
+def bag_to_df(bag: db.Bag, index_key: str = "cord_uid") -> dd.DataFrame:
     return get_bag(build_dir).to_dataframe().set_index(index_key)
 
 

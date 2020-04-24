@@ -28,7 +28,7 @@ pipeline {
         stage("Prepare data") {
             steps {
                 sh """
-                    git tag ${params.tag}
+                    git tag -f ${params.tag}
                 """
 
                 dir ('build') {

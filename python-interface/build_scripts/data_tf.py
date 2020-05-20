@@ -21,11 +21,11 @@ def load_json(json_file: Path):
 def flatten(record):
     # TODO Find a better way to flatten the authors without loss
     if "author" in record["root"]["authors"]:
-        record["root"]["authors"] = ';'.join([
+        record["root"]["authors"] = [
             author["name"] for author in record["root"]["authors"]["author"]
-        ])
+        ]
     else:
-        record["root"]["authors"] = ""
+        record["root"]["authors"] = []
 
     return record["root"]
 

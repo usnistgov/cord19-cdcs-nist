@@ -36,8 +36,14 @@ pipeline {
                         # Unzip directory
                         tar -xvzf ./data.tar.gz --strip-components=1
 
-                        # Unzip JSON files for build
-                        unzip -q -o JSON.zip -d ./data
+                        # Unzip XML files for build
+                        unzip -q -o XML.zip -d ./data
+
+			# Copy XSD files in the correct directory
+			for xsd in $(find . -name "*.xsd")
+			do
+			  cp $xsd ./data/XML
+                        done
 
                         # Move zip to dist folder
                         cp *.zip -t ../dist/

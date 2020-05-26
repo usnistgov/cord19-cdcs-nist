@@ -43,15 +43,17 @@ pipeline {
                         cp *.zip -t ../dist/
                     """
 
-                    def xsd_files = sh(
-                        script: 'find . -name "*.xsd"', returnStdout: true
-                    ).split()
+                    script {  // Copy XSD files into XML directory
+                        def xsd_files = sh(
+                            script: 'find . -name "*.xsd"', returnStdout: true
+                        ).split()
 
-                    for (int i = 0; i < xsd_files.size(); i++) {
-                        def xsd_file = xsd_files[i]
-                        sh """
-                            cp $xsd_file ./data/XML
-                        """
+                        for (int i = 0; i < xsd_files.size(); i++) {
+                            def xsd_file = xsd_files[i]
+                            sh """
+                                cp $xsd_file ./data/XML
+                            """
+                        }
                     }
                 }
             }

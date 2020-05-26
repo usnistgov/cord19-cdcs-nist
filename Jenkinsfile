@@ -39,15 +39,20 @@ pipeline {
                         # Unzip XML files for build
                         unzip -q -o XML.zip -d ./data
 
-			# Copy XSD files in the correct directory
-			for xsd in $(find . -name "*.xsd")
-			do
-			  cp $xsd ./data/XML
-                        done
-
                         # Move zip to dist folder
                         cp *.zip -t ../dist/
                     """
+
+                    def xsd_files = sh(
+                        script: 'find . -name "*.xsd"', returnStdout: true
+                    ).split()
+
+                    for (int i = 0; i < xsd_files.size(); i++) {
+                        def xsd_file = xsd_files[i]
+                        sh """
+                            cp $xsd_file ./data/XML
+                        """
+                    }
                 }
             }
         }

@@ -36,12 +36,25 @@ pipeline {
                         # Unzip directory
                         tar -xvzf ./data.tar.gz --strip-components=1
 
-                        # Unzip JSON files for build
-                        unzip -q -o JSON.zip -d ./data
+                        # Unzip XML files for build
+                        unzip -q -o XML.zip -d ./data
 
                         # Move zip to dist folder
                         cp *.zip -t ../dist/
                     """
+
+                    script {  // Copy XSD files into XML directory
+                        def xsd_files = sh(
+                            script: 'find . -name "*.xsd"', returnStdout: true
+                        ).split()
+
+                        for (int i = 0; i < xsd_files.size(); i++) {
+                            def xsd_file = xsd_files[i]
+                            sh """
+                                cp $xsd_file ./data/XML
+                            """
+                        }
+                    }
                 }
             }
         }

@@ -114,7 +114,7 @@ pipeline {
                                         "tag_name": "${params.tag}",
                                         "target_commitish": "master",
                                         "name": "${params.name}",
-                                        "draft": false, "prerelease": true
+                                        "draft": false, "prerelease": false
                                     }' $release_url
                             """, returnStdout: true)
 

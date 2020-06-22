@@ -84,6 +84,14 @@ pipeline {
                     sh """
                         . /tmp/venv-${BUILD_TAG}/bin/activate
                         poetry run task data-tf -o
+                        
+                        # Zip and move the new content to dist folder
+                        cd ../build
+                        zip -r JSON.zip ./JSON
+                        zip -r CSV.zip ./CSV
+                        mv *.zip ../dist
+                        cd ../python-interface
+                        
                         poetry build
 
                         cp ./dist/*.tar.gz ../dist/

@@ -34,7 +34,7 @@ pipeline {
                 dir ('build') {
                     sh """
                         # Unzip directory
-                        tar -xvzf ./data.tar.gz --strip-components=1
+                        tar -xvzf ./data.tar.gz
 
                         # Unzip XML files for build
                         unzip -q -o XML.zip -d ./data

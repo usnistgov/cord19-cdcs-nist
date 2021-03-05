@@ -51,7 +51,7 @@ pipeline {
                         for (int i = 0; i < xsd_files.size(); i++) {
                             def xsd_file = xsd_files[i]
                             sh """
-                                cp $xsd_file ./data/XML
+                                cp $xsd_file ./data/XML || :
                             """
                         }
                     }
@@ -94,7 +94,7 @@ pipeline {
                         
                         poetry build
 
-                        cp ./dist/*.tar.gz ../dist/
+                        cp ./dist/*.tar.gz ../dist/ || :
                     """
                 }
             }

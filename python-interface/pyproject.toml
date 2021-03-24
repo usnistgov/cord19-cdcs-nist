@@ -8,8 +8,8 @@ include = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.6.8"
-cv-py = "^0.1.0"
+python = "^3.8"
+cv-py = "^0.2.1"
 
 [tool.poetry.dev-dependencies]
 taskipy = "^1.2.1"
@@ -17,9 +17,13 @@ black = "^19.10b0"
 xmlschema = "^1.1.2"
 ipykernel = "^5.2.1"
 toolz = "^0.10.0"
+poetry-dynamic-versioning = "^0.10.0"
 
 [tool.poetry-dynamic-versioning]
 enable = true
+vcs = "git"
+style = "semver"
+format = "{base}"
 
 [tool.taskipy.tasks]
 data-tf = "python build_scripts/data_tf.py"

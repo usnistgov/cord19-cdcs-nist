@@ -86,6 +86,7 @@ def bag_to_df(bag: db.Bag, index_key: str = "g_id") -> dd.DataFrame:
 
 
 if __name__ == "__main__":
+    import multiprocessing.popen_spawn_posix
     from dask.distributed import Client, progress
 
     client = Client()

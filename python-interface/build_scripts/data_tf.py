@@ -42,11 +42,11 @@ def load_xml(schema: XMLSchema, p: Path) -> Dict:
 #     return record["root"]
 
 
-def flatten_authors(authdict: Dict):
-    if authdict == None:
-        return []
-    else:
-        return [auth.get("name") for auth in authdict.get("author", [])]
+# def flatten_authors(authdict: Dict):
+#     if authdict == None:
+#         return []
+#     else:
+#         return [auth.get("name") for auth in authdict.get("author", [])]
 
 
 def split_keywords(kwstr: str):
@@ -63,7 +63,7 @@ def get_bag(build_dir: Path, base_dtype: str = "xml") -> db.Bag:
     schema = get_schema(build_dir)
     filepaths = dtype_path.glob(f"**/*.{base_dtype}")
 
-    _update_authors = flip(update_in(func=flatten_authors), ("authors",))
+    # _update_authors = flip(update_in(func=flatten_authors), ("authors",))
 
     _update_keywords = lambda d: pipe(
         d,
@@ -74,9 +74,8 @@ def get_bag(build_dir: Path, base_dtype: str = "xml") -> db.Bag:
     )
 
     return (
-        db.from_sequence(filepaths)
-        .map(partial(load_xml, schema))
-        .map(_update_authors)
+        db.from_sequence(filepaths).map(partial(load_xml, schema))
+        # .map(_update_authors)
         .map(_update_keywords)
     )
 
